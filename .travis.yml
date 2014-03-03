@@ -1,10 +1,19 @@
 language: php
-
 php:
-  - 5.3.3
-  - 5.3
-  - 5.4
+  - "5.4"
+  - "5.3"
 
-before_script: composer install -n
+before_script:
+  - cp app/config/parameters.yml-dist app/config/parameters.yml
+  - php bin/composer.phar install --prefer-source --dev
+  - pear install pear/PHP_CodeSniffer
+  - phpenv rehash
 
-script: phpunit -c app
+script: phpunit --coverage-text
+
+after_script:
+  - phpcs --report=full --report=gitblame --standard=PSR2 src/
+
+notifications:
+  irc:
+    - "irc.freenode.org#mediawatch"

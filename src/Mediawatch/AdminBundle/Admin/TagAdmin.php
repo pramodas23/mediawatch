@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * MediaWatch
+ *
+ * Copyright (c) 2012-2013, MediaWatch
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * Admin for tags
+ *
+ * This class handles fields for the tags data.
+ *
+ * @category   AdminBundle
+ * @author     <author>
+ * @copyright  2012-2013 MediaWatch
+ * @license    http://opensource.org/licenses/mit-license.php MIT
+ * @link       https://github.com/mediawatch/mediawatch
+ * @link       http://www.mediawatch.me
+ */
+
+namespace Mediawatch\AdminBundle\Admin;
+
+use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+
+class TagAdmin extends Admin
+{
+    protected $datagridValues = array(
+        '_sort_by' => 'name' // name of the ordered field (default = the model id field, if any)
+    );
+    
+    /**
+     * Form fields configuration
+     *
+     * This function adds Name to the form mapper.
+     *
+     * @param FormMapper $formMapper
+     */
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper->add(
+            'name',
+            null,
+            array(
+                'help' => 'Slug is auto-generated based off the name. Spaces will be replaced with hyphens.',
+                'label' => 'Name: '
+            )
+        );
+    }
+
+    /**
+     * Datagrid filters configuration
+     *
+     * This function adds Name to the datagrid mapper.
+     *
+     * @param DatagridMapper $datagridMapper
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper->add('name');
+    }
+
+    /**
+     * List fields configuration
+     *
+     * This function adds Name identifier to the list mapper.
+     *
+     * @param ListMapper $listMapper
+     */
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper->addIdentifier('name')->add('slug');
+    }
+}

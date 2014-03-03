@@ -1,14 +1,21 @@
-# This file is auto-generated during the composer install
+# These parameters can be imported into other config files
+# by enclosing the key with % (like %database_user%)
+# Comments start with '#', as in php.ini
 parameters:
-    database_driver: pdo_mysql
-    database_host: 127.0.0.1
-    database_port: null
-    database_name: symfony
-    database_user: root
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:      null
+
+    # When using vagrant/puppet, make sure these match in /support/puppet/manifests/params.pp
+    database_name:     mediawatch
+    database_user:     root
     database_password: null
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
-    locale: en
-    secret: ThisTokenIsNotSoSecretChangeIt
+
+    mailer_transport:  smtp
+    mailer_host:       localhost
+    mailer_user:
+    mailer_password:
+
+    locale:            en
+
+    secret:            843209rjewiofiefdkljlk

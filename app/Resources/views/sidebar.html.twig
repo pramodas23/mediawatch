@@ -1,0 +1,14 @@
+<div id="sidebar">
+    <section>
+        <div id="categories">
+            <h1>CATEGORIES</h1>
+            {% render controller("MediawatchMediaBundle:Category:list", { }) %}
+        </div>
+    </section>
+    <section>
+        <div id="tags">
+            <h1>TAGS</h1>
+            {% render controller("MediawatchMediaBundle:Tag:list", { }) %}
+        </div>
+    </section>
+</div>
